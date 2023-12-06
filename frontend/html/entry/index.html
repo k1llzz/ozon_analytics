@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="../auth/style.css">
+    <meta charset="UTF-8">
+    <title>Ozon Analytics</title>
+</head>
+<body>
+<div class="container">
+    <label for="uname"><b>Логин</b></label>
+    <form method="post" action="http://127.0.0.1:8000/user/entry">
+        <input type="text" placeholder="Введите ваш email" name="email" required>
+        <label for="psw"><b>Пароль</b></label>
+        <input type="password" placeholder="Введите пароль" name="psw" required>
+
+        <button type="submit" class="auth_btn">Войти</button>
+    </form>
+
+</div>
+
+<div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn"><a href="/ozon_analytics">Назад</a></button>
+    <button type="button" class="entry_button"><a href="/auth">Назад к регистрации</a></button>
+    <div class="error">
+        <p id="error_text" class="error_txt"></p>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search)
+        const errParam = urlParams.get('error')
+        if (errParam) {
+            document.getElementById('error_text').innerHTML = errParam
+        }
+    </script>
+</div>
+
+</div>
+</body>
+</html>

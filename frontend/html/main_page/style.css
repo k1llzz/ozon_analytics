@@ -1,0 +1,77 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("./fonts/Lato/Lato-Regular.ttf");
+}
+
+a {
+    text-decoration: none;
+    display: block;
+}
+.main_logo_url {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "Montserrat", "Arial", sans-serif;
+    color: #0000FF;
+    display: inline-block;
+    width: 270px;
+    margin-left: 40px;
+    margin-top: 25px;
+    height: 50px;
+}
+h1 {
+    font-size: 40px;
+}
+.main_header {
+    display: inline-block;
+    color: #0000FF;
+    text-align: left;
+    height: 100px;
+    width: 100%;
+}
+.header_menu_table {
+  position: fixed;
+  list-style: none;
+  margin: 0;
+  padding-left: 400px;
+  margin-top: -65px;
+}
+
+.header_menu_point_table {
+    display: inline-block;
+    font-size: 26px;
+    padding-right: 140px;
+    font-family: "Montserrat", "Arial", sans-serif;
+}
+.header_menu_point {
+    color: black;
+}
+.header_menu_point_pic {
+      display: inline-block;
+      padding-left: 100px;
+}
+.pic_auth {
+    width: 30px;
+    height: 30px;
+}
+.title_desc {
+    font-family: "Lato", sans-serif;
+    font-size: 34px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20em;
+    text-align: center;
+}
+.desc_text{
+    font-family: "Lato" , sans-serif;
+    font-size: 23px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50em;
+}
+
+

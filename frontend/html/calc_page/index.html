@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Ozon Analytics</title>
+</head>
+<body>
+<section class="header">
+    <div class="main_header">
+        <a href="/ozon_analytics" class="main_logo_url">Ozon Helper</a>
+    </div>
+    <div class="header_menu">
+        <ul class="header_menu_table">
+            <li class="header_menu_point_table"><a href="/calc_page" class="header_menu_point">Рассчитать поставку</a>
+            </li>
+            <li class="header_menu_point_table"><a href="/my_goods" class="header_menu_point">Мои поставки</a></li>
+            <li class="header_menu_point_pic"><a href="/auth" class="header_menu_point_pic_a"><img
+                    src="./media/вход.png" class="pic_auth"></a></li>
+        </ul>
+    </div>
+</section>
+
+<hr/>
+<section class="main_text">
+    <div class="text_calc">
+        <h1 class="title_main_calc">Рассчитайте расходы на товар</h1>
+        <p class="desc_calc">Заполните все поля калькулятора и получите полный рассчет чистой прибыли товара</p>
+    </div>
+</section>
+<section class="forms">
+    <div class="forms">
+        <form method="post" action="http://127.0.0.1:8000/v1/calculate">
+            <div class="inp_1">
+                <p class="desc_form">Cтоимость товара в Юанях</p>
+                <input type="text" placeholder="Стоимость, ¥" name="uan" required>
+            </div>
+            <div class="inp_2">
+                <p class="desc_form">Количество товара</p>
+                <input type="text" placeholder="Количество, шт" name="count" required>
+            </div>
+            <div class="inp_3">
+                <p class="desc_form">Вес товара</p>
+                <input type="text" placeholder="Вес, кг" name="weight" required>
+            </div>
+            <div class="inp_4">
+                <p class="desc_form">Стоимость доставки за КГ из Китая</p>
+                <input type="text" placeholder="Стоимость, $" name="delivery" required>
+            </div>
+            <div class="inp_5">
+                <p class="desc_form">Стоимость продажи на Ozon</p>
+                <input type="text" placeholder="Стоимость, ₽" name="price_ozon" required>
+            </div>
+            <div class="inp_6">
+                <p class="desc_form">Процент Ozon на данную категорию товара</p>
+                <input type="text" placeholder="Процент, %" name="percent_ozon" required>
+            </div>
+            <div class="inp_7">
+                <p class="desc_form">Курс Юаня для рассчета</p>
+                <input type="text" placeholder="Курс, ₽" name="u_r" required>
+            </div>
+            <div class="result">
+                <p>Ваша потенциальная прибыль с этого товара:</p>
+                <p id="res_text" class="res_text"></p>
+            </div>
+            <div class="inp_8">
+                <p class="desc_form">Курс Доллара для рассчета</p>
+                <input type="text" placeholder="Курс, ₽" name="s_r" required>
+            </div>
+            <script>
+                let button = document.getElementById("button");
+
+                button.addEventListener('mousemove', (e) => {
+                    x = e.offsetX;
+                    y = e.offsetY;
+                    button.style.setProperty('--mouse-x', x + "px");
+                    button.style.setProperty('--mouse-y', y + "px");
+                });
+            </script>
+            <button type="submit" class="calc_button">Рассчитать</button>
+        </form>
+<!--        <div class="result">-->
+<!--            <p>Ваша потенциальная прибыль с этого товара:</p>-->
+<!--            <p id="res_text" class="res_text"></p>-->
+<!--        </div>-->
+        <script>
+            const urlParams = new URLSearchParams(window.location.search)
+            const errParam = urlParams.get('result')
+            if (errParam) {
+                document.getElementById('res_text').innerHTML = errParam
+            }
+        </script>
+
+    </div>
+</section>
+</body>
+</html>

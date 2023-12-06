@@ -1,0 +1,78 @@
+@font-face {
+  font-family: "Lato";
+  src: url("./fonts/Lato/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Regular.ttf");
+}
+
+body {
+    width: 40%;
+    margin: 0 auto;
+    font-family: "Lato", sans-serif;
+
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-family: "Lato", sans-serif;
+
+}
+
+button {
+    background-color: #0000FF;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-family: "Lato", sans-serif;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.auth_btn {
+    font-family: "Lato", sans-serif;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.entry_button {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #36abf4;
+}
+
+.container {
+    padding: 16px;
+    background-color: #b3d0f6;
+}
+
+.error_txt {
+    font-family: "Montserrat", sans-serif;
+    padding-left: 265px;
+    margin-top: -38px;
+    text-align: center;
+    font-size: 18px;
+    color: red;
+}
