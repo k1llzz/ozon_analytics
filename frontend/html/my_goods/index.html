@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <title>Ozon Analytics</title>
-    </head>
+</head>
 <body>
 <section class="header">
     <div class="main_header">
@@ -12,16 +12,71 @@
     </div>
     <div class="header_menu">
         <ul class="header_menu_table">
-            <li class="header_menu_point_table"><a href="/calc_page" class="header_menu_point">Рассчитать поставку</a></li>
+            <li class="header_menu_point_table"><a href="/calc_page" class="header_menu_point">Рассчитать поставку</a>
+            </li>
             <li class="header_menu_point_table"><a href="/my_goods" class="header_menu_point">Мои поставки</a></li>
-            <li class="header_menu_point_pic"><a href="/auth" class="header_menu_point_pic_a"><img src="./media/вход.png" class="pic_auth" alt="Entry Button"></a></li>
-    </ul>
+            <li class="header_menu_point_pic"><a href="/auth" class="header_menu_point_pic_a"><img
+                    src="./media/вход.png" class="pic_auth" alt="Entry Button"></a></li>
+        </ul>
     </div>
 </section>
+<hr/>
+<section class="main_text">
+    <div class="text_goods">
+        <h1 class="title_main_goods">Добавляйте товары на сайт</h1>
+        <p class="desc_goods">Зарегистрируйтесь и рассчитайте прибыль нужного товара в калькуляторе и добавьте его на
+            сайт! Сайт подскажет какой из ваших товаров самый прибыльный.</p>
+    </div>
+</section>
+<section class="forms">
+    <div class="forms">
+        <form method="post" action="http://127.0.0.1:8000/v1/post_good">
+            <div class="inp_1">
+                <p class="desc_form">Название товара</p>
+                <input type="text" placeholder="Название" name="name" required>
+            </div>
+            <div class="inp_2">
+                <p class="desc_form">Ссылка на товар</p>
+                <input type="text" placeholder="Ссылка" name="url" required>
+            </div>
+            <div class="inp_3">
+                <p class="desc_form">Потенцтальная прибыль</p>
+                <input type="text" placeholder="Прибыль" name="profit" required>
+            </div>
+            <button type="submit" class="goods_button">Добавить</button>
+        </form>
+        <p></p>
 
-  <hr/>
-<section class="">
-    <div class="">
+        <div class="buttons">
+            <form method="get" action="http://127.0.0.1:8000/v1/get_good_max">
+                <button class="goods_buttons" style="margin-top: 5px">Показать самый прибыльный товар</button>
+            </form>
+            <form method="get" action="http://127.0.0.1:8000/v1/get_good_min">
+                <button class="goods_buttons" style="margin-top: 30px">Показать самый не прибыльный товар</button>
+            </form>
+        </div>
+        <div class="result">
+            <p></p>
+            <p id="res_text" class="res_text"></p>
+        </div>
+        <div class="result_buttons">
+            <p></p>
+            <p id="res_text_buttons" class="res_text"></p>
+        </div>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search)
+            const errParam = urlParams.get('good')
+            if (errParam) {
+                document.getElementById('res_text').innerHTML = errParam
+            }
+        </script>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search)
+            const errParam = urlParams.get('good')
+            if (errParam) {
+                document.getElementById('res_text_buttons').innerHTML = errParam
+            }
+        </script>
     </div>
 </section>
 </body>

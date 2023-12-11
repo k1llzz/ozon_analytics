@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Form
+from sqlalchemy import func
 
 from app.api.routes.v1.auth import CurrentUser
+from app.db.tables import goods
 from app.db.tables.goods import Goods
 from sqlalchemy.orm import Session
 from fastapi.responses import RedirectResponse
@@ -25,12 +27,56 @@ def calculate(uan=Form(), count=Form(),
         return RedirectResponse("/calc_page?result=Неверный+ввод", status_code=302)
 
 
-@router.get("/get_goods")
-def get_goods(user_id=CurrentUser.user_id):
+@router.get("/get_good_max")
+def get_goods_max():
+    user_id = CurrentUser.user_id
     if user_id:
-        response_url = "/my_goods?="
         with Session(autoflush=False, bind=engine) as db:
             goods = db.query(Goods).filter_by(user_id=user_id).all()
-            return response_url
+            max_profit_good = goods[0]
+            for good in goods:
+                if int(good.profit) > int(max_profit_good.profit):
+                    max_profit_good = good
+            return RedirectResponse(
+                f"/my_goods?good=Название+{max_profit_good.name}+Ссылка+{max_profit_good.url}+Прибыль+{max_profit_good.profit}",
+                status_code=302)
+    else:
+        return RedirectResponse(
+            "/my_goods?good=Вы+не+авторизованы",
+            status_code=302)
 
 
+@router.get("/get_good_min")
+def get_goods_min():
+    user_id = CurrentUser.user_id
+    if user_id:
+        with Session(autoflush=False, bind=engine) as db:
+            goods = db.query(Goods).filter_by(user_id=user_id).all()
+            min_profit_good = goods[0]
+            for good in goods:
+                if int(good.profit) < int(min_profit_good.profit):
+                    min_profit_good = good
+            return RedirectResponse(
+                f"/my_goods?good=Название+{min_profit_good.name}+Ссылка+{min_profit_good.url}+Прибыль+{min_profit_good.profit}",
+                status_code=302)
+    else:
+        return RedirectResponse(
+            "/my_goods?good=Вы+не+авторизованы",
+            status_code=302)
+
+
+@router.post("/post_good")
+def post_good(user_id=CurrentUser.user_id,
+              name=Form(), url=Form(),
+              profit=Form()):
+    user_id = CurrentUser.user_id
+    if user_id:
+        with Session(autoflush=False, bind=engine) as db:
+            good = Goods(name=name, url=url, profit=profit, user_id=CurrentUser.user_id)
+            db.add(good)
+            db.commit()
+            return RedirectResponse("/my_goods", status_code=302)
+    else:
+        return RedirectResponse(
+            "/my_goods?good=Вы+не+авторизованы",
+            status_code=302)

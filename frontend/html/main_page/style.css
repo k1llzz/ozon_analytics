@@ -34,11 +34,14 @@ h1 {
     width: 100%;
 }
 .header_menu_table {
-  position: fixed;
-  list-style: none;
-  margin: 0;
-  padding-left: 400px;
-  margin-top: -65px;
+    display: inline-block;
+    text-align: center;
+    width: 68em;
+    position: fixed;
+    list-style: none;
+    margin: 0;
+    margin-left: 300px;
+    top: 45px;
 }
 
 .header_menu_point_table {

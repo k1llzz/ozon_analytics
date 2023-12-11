@@ -67,22 +67,9 @@
                 <p class="desc_form">Курс Доллара для рассчета</p>
                 <input type="text" placeholder="Курс, ₽" name="s_r" required>
             </div>
-            <script>
-                let button = document.getElementById("button");
-
-                button.addEventListener('mousemove', (e) => {
-                    x = e.offsetX;
-                    y = e.offsetY;
-                    button.style.setProperty('--mouse-x', x + "px");
-                    button.style.setProperty('--mouse-y', y + "px");
-                });
-            </script>
             <button type="submit" class="calc_button">Рассчитать</button>
         </form>
-<!--        <div class="result">-->
-<!--            <p>Ваша потенциальная прибыль с этого товара:</p>-->
-<!--            <p id="res_text" class="res_text"></p>-->
-<!--        </div>-->
+
         <script>
             const urlParams = new URLSearchParams(window.location.search)
             const errParam = urlParams.get('result')
@@ -90,7 +77,6 @@
                 document.getElementById('res_text').innerHTML = errParam
             }
         </script>
-
     </div>
 </section>
 </body>
