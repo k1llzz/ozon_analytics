@@ -1,8 +1,6 @@
 from fastapi import APIRouter, Form
-from sqlalchemy import func
 
 from app.api.routes.v1.auth import CurrentUser
-from app.db.tables import goods
 from app.db.tables.goods import Goods
 from sqlalchemy.orm import Session
 from fastapi.responses import RedirectResponse
@@ -33,7 +31,12 @@ def get_goods_max():
     if user_id:
         with Session(autoflush=False, bind=engine) as db:
             goods = db.query(Goods).filter_by(user_id=user_id).all()
-            max_profit_good = goods[0]
+            try:
+                max_profit_good = goods[0]
+            except Exception:
+                return RedirectResponse(
+                    "/my_goods?good=Не+добавлено+товаров",
+                    status_code=302)
             for good in goods:
                 if int(good.profit) > int(max_profit_good.profit):
                     max_profit_good = good
@@ -52,7 +55,12 @@ def get_goods_min():
     if user_id:
         with Session(autoflush=False, bind=engine) as db:
             goods = db.query(Goods).filter_by(user_id=user_id).all()
-            min_profit_good = goods[0]
+            try:
+                min_profit_good = goods[0]
+            except Exception:
+                return RedirectResponse(
+                    "/my_goods?good=Не+добавлено+товаров",
+                    status_code=302)
             for good in goods:
                 if int(good.profit) < int(min_profit_good.profit):
                     min_profit_good = good

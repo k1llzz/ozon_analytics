@@ -1,11 +1,5 @@
-from typing import Optional
-
-from fastapi import APIRouter, status, Request, HTTPException
-from pydantic import Field
-from sqlalchemy import delete
+from fastapi import APIRouter, status, HTTPException
 from sqlalchemy.orm import Session
-from starlette.responses import FileResponse
-from fastapi.templating import Jinja2Templates
 
 from app.db.tables.auth import engine, User
 
